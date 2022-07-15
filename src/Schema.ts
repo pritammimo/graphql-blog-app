@@ -1,10 +1,11 @@
 import { ApolloServer,gql } from "apollo-server";
 export const typeDefs=gql`
 type Query{
-    hello:String!
+    posts:[Post!]!
 }
 type Mutation {
-    postCreate(title:String!,content:String!):PostPayload!
+    postCreate(post:PostInput!):PostPayload!
+    postUpdate(postId:ID!,post:PostInput!):PostPayload!
 }
 type Post {
     id:ID!
@@ -34,5 +35,9 @@ type UserError{
 type PostPayload{
     userErrors:[UserError!]!
     post:Post
+}
+input PostInput{
+    title:String
+    content:String
 }
 `
