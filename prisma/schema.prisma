@@ -37,3 +37,4 @@ model Profile {
     userId     Int     @unique
     user      User     @relation(fields:[userId],references: [id])
 }
+// npx prisma db push, npx prisma studio
