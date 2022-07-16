@@ -6,6 +6,7 @@ type Query{
 type Mutation {
     postCreate(post:PostInput!):PostPayload!
     postUpdate(postId:ID!,post:PostInput!):PostPayload!
+    postDelete(postId:ID!):PostPayload!
 }
 type Post {
     id:ID!
