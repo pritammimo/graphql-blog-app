@@ -4,7 +4,7 @@ interface UserParentType{
     id:number
 }
 export  const User={
-  posts:(parent:UserParentType,args:any,{userInfo,prisma}:Context)=>{
+  posts:(parent:UserParentType,{take,skip}:{take:number,skip:number},{userInfo,prisma}:Context)=>{
     const isOwnProfile=parent.id===userInfo?.userId
     if(isOwnProfile){
      return prisma.post.findMany({
@@ -15,7 +15,9 @@ export  const User={
         {
           createdAt:"desc"
         }
-      ]
+      ],
+      skip,
+      take
      })
     }
     else {

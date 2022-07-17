@@ -2,7 +2,7 @@ import { ApolloServer,gql } from "apollo-server";
 export const typeDefs=gql`
 type Query{
     me:User
-    posts:[Post!]!
+    posts(take:Int!,skip:Int!):[Post!]!
     profile(userId:ID!):Profile
 }
 type Mutation {
@@ -29,7 +29,7 @@ type User{
     email:String!
      name:String!
     createdAt:String!
-    posts:[Post!]!
+    posts(take:Int!,skip:Int!):[Post!]!
 }
 type Profile{
     id:ID!

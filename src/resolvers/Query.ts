@@ -1,7 +1,7 @@
 import { prisma } from "@prisma/client";
 import { Context } from "../index";
 export  const Query={
-    posts:(parent:any,args:any,{prisma}:Context)=>{
+    posts:(parent:any,{take,skip}:{take:number,skip:number},{prisma}:Context)=>{
         return prisma.post.findMany({
             where: {
               published: true,
@@ -11,6 +11,8 @@ export  const Query={
                 createdAt: "desc",
               },
             ],
+            skip,
+            take
           });
     },
     me:(parent:any,args:any,{prisma,userInfo}:Context)=>{
